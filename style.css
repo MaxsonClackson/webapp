@@ -1,20 +1,21 @@
 body {
     margin: 0;
+    color: var(--tg-theme-text-color);
+    background: var(--tg-theme-bg-color);
+
 }
 
-.container {
+.filter-setting {
     display: flex;
 }
 
 .setting-block {
     width: 82%;
-    background-color: blue;
 }
 
 .filter-column-block {
     float: right;
     width: 18%;
-    background-color: green;
 }
 
 .filter-block {
@@ -24,5 +25,11 @@ body {
     margin: 0;
     display: block;
     height: 95px;
-    background-color: black;
+    text-align: center;
+
+}
+
+span.filter-name {
+    padding: 36px;
+    display: block;
 }
