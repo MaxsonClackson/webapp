@@ -20,6 +20,7 @@ body {
 
 .filter-block {
     border-left: solid 1px;
+    border-bottom: solid 1px;
     border-color: #dfdfdf;
     position: static;
     margin: 0;
