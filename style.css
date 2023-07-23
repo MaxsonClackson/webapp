@@ -1,8 +1,12 @@
 body {
     margin: 0;
-    width: 590px;
+    padding: 0;
     background-color: red;
     /*var(--tg-theme-secondary-bg-color)*/
+}
+
+.conteiner {
+    max-width: 390px;
 }
 
 .setting-block{
