@@ -19,8 +19,9 @@ body {
 }
 
 .filter-block {
-    border-left: solid 1px;
-    border-bottom: solid 1px;
+    /*border-left: solid 1px;
+    border-bottom: solid 1px;*/
+    border: solid 5px;
     border-color: #dfdfdf;
     position: static;
     margin: 0;
