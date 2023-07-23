@@ -1,24 +1,19 @@
 body {
     margin: 0;
-    padding: 0;
-    background-color: red;
-    /*var(--tg-theme-secondary-bg-color)*/
 }
 
 .container {
-    max-width: 390px;
+    display: flex;
 }
 
-.setting-block{
-    position: static;
-    width: 81.4%
+.setting-block {
+    width: 82%;
+    background-color: blue;
 }
 
 .filter-column-block {
-    position: static;
     float: right;
-    height: 1000px;
-    width: 108px;
+    width: 18%;
     background-color: green;
 }
 
@@ -28,7 +23,6 @@ body {
     position: static;
     margin: 0;
     display: block;
-    width: 108px;
     height: 95px;
     background-color: black;
 }
