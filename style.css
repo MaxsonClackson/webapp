@@ -19,19 +19,21 @@ body {
 }
 
 .filter-block {
-    /*border-left: solid 1px;
-    border-bottom: solid 1px;*/
-    border: solid 5px;
+    border-top: none;
+    border-left: solid 1px;
+    border-bottom: none;
+    padding-top: 36px;
+    /*border: solid 5px;*/
     border-color: #dfdfdf;
     position: static;
     margin: 0;
     display: block;
-    height: 95px;
+    height: 59px;
     text-align: center;
-
 }
 
-span.filter-name {
-    padding-top: 36px;
-    display: block;
+.filter-block.on {
+    border-top: solid 1px;
+    border-left: none;
+    border-bottom: solid 1px;
 }
