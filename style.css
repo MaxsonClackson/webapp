@@ -1,7 +1,30 @@
 body {
-    width: 590;
+    margin: 0;
+    width: 590px;
     background-color: red;
     /*var(--tg-theme-secondary-bg-color)*/
 }
 
+.setting-block{
+    position: static;
+    width: 81.4%
+}
 
+.filter-column-block {
+    position: static;
+    float: right;
+    height: 1000px;
+    width: 108px;
+    background-color: green;
+}
+
+.filter-block {
+    border-left: solid 1px;
+    border-color: #dfdfdf;
+    position: static;
+    margin: 0;
+    display: block;
+    width: 108px;
+    height: 95px;
+    background-color: black;
+}
