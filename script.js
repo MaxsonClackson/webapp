@@ -1,3 +1,5 @@
+function addFilterExterior(){}
+
 function filterButtonsEventHandler(event){
     var element = event.target
 

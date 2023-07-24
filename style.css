@@ -9,10 +9,6 @@ body {
     display: flex;
 }
 
-.setting-block {
-    width: 82%;
-}
-
 .filter-column-block {
     float: right;
     width: 18%;
@@ -22,13 +18,12 @@ body {
     border-top: none;
     border-left: solid 1px;
     border-bottom: none;
-    padding-top: 36px;
-    /*border: solid 5px;*/
     border-color: #dfdfdf;
-    position: static;
+    padding-top: 17%;
+    position: relative;
     margin: 0;
     display: block;
-    height: 59px;
+    min-height: 15.3%;
     text-align: center;
 }
 
@@ -36,4 +31,35 @@ body {
     border-top: solid 1px;
     border-left: none;
     border-bottom: solid 1px;
+    border-color: #dfdfdf;
+}
+
+.container {
+    width: 82%;
+}
+
+.setting-bubble {
+    display: block;
+    position: relative;
+    left: 25%;
+    max-width: 50%;
+    padding: 1%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    border: solid 2px;
+    border-color: #dfdfdf;
+    border-radius: 8px;
+    text-align: center;
+
+}
+
+.setting-bubble.on {
+    background: #eea20e;
+    border-color: #db9f27;
+    color: white;
+}
+
+.border {
+    border-top: solid 2px;
+    border-color: #dfdfdf;
 }
