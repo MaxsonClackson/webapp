@@ -45,8 +45,9 @@ body {
     /*left: 25%;
     max-width: 50%;*/
     padding: 1%;
-    margin-top: 2%;
-    margin-bottom: 2%;
+    margin: 4%;
+    /*margin-top: 2%;
+    margin-bottom: 2%;*/
     border: solid 2px;
     border-color: #dfdfdf;
     border-radius: 8px;
@@ -54,13 +55,50 @@ body {
 
 }
 
-.setting-bubble.on {
-    background: #eea20e;
-    border-color: #db9f27;
-    color: white;
-}
-
 .border {
     border-top: solid 2px;
     border-color: #dfdfdf;
+}
+
+.setting-title {
+    margin-left: 4%;
+}
+
+#quality_cover {
+    background: #eb4b4b;
+    color: white;
+}
+
+#quality_classified {
+    background: #c92ce6;
+    color: white;
+}
+
+#quality_restricted {
+    background: #8545f3;
+    color: white;
+}
+
+#quality_milspec {
+    background: #4965f3;
+    color: white;
+}
+
+#quality_industrial {
+    background: #4d91c5;
+    color: white;
+}
+
+#quality_consumer {
+    background: #b0c3d9;
+    color: white;
+}
+
+.setting-bubble.on, #quality_cover.on,
+#quality_classified.on, #quality_restricted.on,
+#quality_milspec.on, #quality_industrial.on,
+#quality_consumer.on {
+    background: #eea20e;
+    border-color: #db9f27;
+    color: white;
 }
