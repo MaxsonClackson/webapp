@@ -5,14 +5,28 @@ body {
 
 }
 
+.view-zone {
+    /*display: flex;
+    justify-content: space-around;
+    align-content: flex-end;
+    flex-wrap: wrap;
+    */
+    margin: 0 auto;
+    max-width: 480px;
+    transition: max-height var(--page-animation), opacity var(--page-animation);
+    background-color: var(--block-bg-color);
+}
+
+/*
 .filter-setting {
     display: flex;
 }
-
+*/
 
 .filter-column-block {
+    display: inline-block;
     float: right;
-    width: 18%;
+    width: 22%;
 }
 
 .filter-block {
@@ -20,12 +34,13 @@ body {
     border-left: solid 1px;
     border-bottom: none;
     border-color: #dfdfdf;
-    padding-top: 17%;
+    padding-top: 8%;
     position: relative;
     margin: 0;
     display: block;
     min-height: 15.3%;
     text-align: center;
+    padding-bottom: 8%;
 }
 
 .filter-block.on {
@@ -36,7 +51,8 @@ body {
 }
 
 .container {
-    width: 82%;
+    display: inline-block;
+    width: 78%;
 }
 
 .setting-bubble {
