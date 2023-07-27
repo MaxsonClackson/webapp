@@ -26,16 +26,12 @@ function loadBubbleSettingField(element, dict_setting) {
             container.firstElementChild.remove();
         }
     }
-    var h3 = document.createElement('h3');
-    h3.classList.add('setting-title');
-    h3.textContent = element.textContent;
+    var h3 = _createElement('h3', 'setting-title', element.textContent);
     container.appendChild(h3);
     for (var key in dict_setting) {
         var value = dict_setting[key];
-        var div = document.createElement('div');
-        div.classList.add('setting-bubble');
+        var div = _createElement('div', 'setting-bubble', value);
         div.id = key;
-        div.textContent = value;
         container.appendChild(div);
     }
 }
@@ -87,7 +83,8 @@ function loadCollectionSetting() {
                     div_img.appendChild(img)
                     // div button
                     var div_button = _createElement('div', class_='item-button');
-                    var button = _createElement('button', undefined, 'Выбрать');
+                    var button = _createElement('button', 'item-collection-button', 'Выбрать');
+                    button.value = d_collect['id']
                     div_button.appendChild(button)
                     div_item.appendChild(div_lable)
                     div_item.appendChild(div_img)
@@ -101,21 +98,34 @@ function loadCollectionSetting() {
     container.appendChild(flex_wrap)
 }
 
+function chooseCollection (element) {
+    element.textContent = '';
+    var load_gif = _createElement('img', undefined, undefined, src_='./media/loading.gif');
+    element.appendChild(load_gif);
+
+
+}
+
 function settingFieldEventHandler(event){
     var element = event.target
 
-    blocks = document.getElementsByClassName('setting-bubble')
-    for (var i = 0; i < blocks.length; i++) {
-        var block = blocks[i];
-        if (element.id == block.id) {
-            element.classList.add('on');
-        }
-        else {
-            if (block.className.includes('on')) {
-                block.classList.remove('on');
-           }
-        }
+    if (element.tagName == 'BUTTON' && element.className == 'item-collection-button') {
+        chooseCollection (element)
+    }
 
+    if (element.className == 'setting-bubble') {
+        blocks = document.getElementsByClassName('setting-bubble')
+        for (var i = 0; i < blocks.length; i++) {
+            var block = blocks[i];
+            if (element.id == block.id) {
+                element.classList.add('on');
+            }
+            else {
+                if (block.className.includes('on')) {
+                    block.classList.remove('on');
+               }
+            }
+        }
     }
 }
 
