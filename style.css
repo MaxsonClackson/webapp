@@ -1,5 +1,6 @@
 body {
     margin: 0;
+    padding: 0;
     color: var(--tg-theme-text-color);
     background: var(--tg-theme-bg-color);
 
@@ -159,6 +160,7 @@ body {
 }
 
 .item-img {
+    width: 100%;
     margin-top: 18px;
     display: block;
     box-sizing: border-box;
@@ -170,10 +172,4 @@ body {
     height: 80%;
     object-fit: contain;
     /* position: absolute; */
-}
-
-img {
-    width: 100%;
-    height: 80%;
-    object-fit: contain;
 }
