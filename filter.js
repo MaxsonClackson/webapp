@@ -103,6 +103,8 @@ function chooseCollection (element) {
     var load_gif = _createElement('img', undefined, undefined, src_='./media/loading.gif');
     element.appendChild(load_gif);
 
+    var collection_id = element.value
+
 
 }
 
