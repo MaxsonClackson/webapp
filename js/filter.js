@@ -74,8 +74,11 @@ function loadCollectionSettingHTML() {
         var collection_items = FiltersValues.collection_weapons;
         // collection_block
         var collection_block = $('<div class="collection-block"></div>');
-        collection_block.append($('<div class="collection-img"></div>').append($('<img>', {src: `./media/images/collection/${collection.hash_name}.png`})));
-        collection_block.append($('<div class="collection-info"></div>').append($('<h3 class="setting-title" style="margin: 7% 0 0 0">' + collection.hash_name + '</h3>')));
+        collection_block.append($('<div class="collection-img"></div>')
+        .append([$('<img>', {src: `./media/images/collection/${collection.hash_name}.png`}),
+                 $('<div id="change_collection">Сбросить</div>')]));
+        collection_block.append($('<div class="collection-info"></div>').append($('<h3 class="collection-label">' + collection.hash_name + '</h3>')));
+        var collection_buttons = $('<div class="collection-buttons"></div>')
         // collection-items
         var collection_items_block = $('<div class="collection-items"></div>');
         var covert_wrap = $('<div class="flex-wrap">'),
@@ -132,6 +135,11 @@ function loadCollectionSettingHTML() {
         $('.container').append(collection_block);
         $('.container').append(collection_items_block)
     }
+    $('#change_collection').on('click', function() {
+        FiltersValues.choose_collection = null;
+        FiltersValues.collection_weapons = null;
+        loadCollectionSettingHTML()
+    })
 };
 
 function chooseCollection (element) {
