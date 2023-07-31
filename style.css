@@ -81,6 +81,15 @@ body {
     margin: 4%;
 }
 
+.setting-bubble.on, #quality_covert.on,
+#quality_classified.on, #quality_restricted.on,
+#quality_milspec.on, #quality_industrial.on,
+#quality_consumer.on {
+    background: #eea20e;
+    border-color: #db9f27;
+    color: white;
+}
+
 #quality_covert {
     background: #eb4b4b;
     color: white;
@@ -108,15 +117,6 @@ body {
 
 #quality_consumer {
     background: #b0c3d9;
-    color: white;
-}
-
-.setting-bubble.on, #quality_cover.on,
-#quality_classified.on, #quality_restricted.on,
-#quality_milspec.on, #quality_industrial.on,
-#quality_consumer.on {
-    background: #eea20e;
-    border-color: #db9f27;
     color: white;
 }
 
