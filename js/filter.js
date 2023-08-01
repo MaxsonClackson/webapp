@@ -3,6 +3,7 @@ FiltersValues = {
     collection_weapons: null,
     items: null,
     exterior: null,
+    float_range: null,
     quality: null,
     items: null,
 }
@@ -30,18 +31,26 @@ function loadBubbleSettingFieldHTML(element, dict_setting) {
 
 function loadExteriorSettingHTML() {
     var exterior = FiltersValues.exterior
-    var dict_setting = {'exterior_all': 'All', 'exterior_FN': 'Factory New', 'exterior_MW': 'Minimal Wear', 'exterior_FT': 'Field Tested', 'exterior_WW': 'Well Worn', 'exterior_BS': 'Battle Scarred'};
+    var dict_setting = [{id: 'exterior_all', name: 'All', float_range: '0-1'},
+    {id: 'exterior_FN', name: 'Factory New', float_range: '0-0.07'},
+    {id: 'exterior_MW', name: 'Minimal Wear', float_range: '0.07-0.15'},
+    {id: 'exterior_FT', name: 'Field Tested', float_range: '0.15-0.38'},
+    {id: 'exterior_WW', name: 'Well Worn', float_range: '0.38-0.45'},
+    {id: 'exterior_BS', name: 'Battle Scarred', float_range: '0.45-1'}];
     $('.container').empty();
     var h3 = $('<h3 class="setting-title">Exterior/Износ</h3>');
     $('.container').append(h3);
-    for (var key in dict_setting) {
-        var value = dict_setting[key];
+    for (var i=0; i < dict_setting.length; i++){
+        var exterior_dict = dict_setting[i];
+        var id_value = exterior_dict.id;
+        var name = exterior_dict.name;
+        var float_range = exterior_dict.float_range;
         // потом убрать это место, чтобы добавлять, убирать износ ALL в зависимости от магазина
-        if (value == exterior) {
-            var div = $('<div class="setting-bubble exterior on" id="' + key + '">' + value + '</div>');
+        if (name == exterior) {
+            var div = $('<div>', {class: 'setting-bubble exterior on', id: id_value, value: float_range, text: name});
         }
         else {
-            var div = $('<div class="setting-bubble exterior" id="' + key + '">' + value + '</div>');
+            var div = $('<div>', {class: 'setting-bubble exterior', id: id_value, value: float_range, text: name});
         }
         $('.container').append(div);
     }
@@ -198,6 +207,8 @@ function chooseCollection (element) {
 function chooseExterior (element) {
     var exterior = element.textContent;
     FiltersValues.exterior = exterior;
+    var float_range = element.getAttribute('value').split('-')
+    FiltersValues.float_range = [Number(float_range[0]), Number(float_range[1])]
     var elements = document.getElementsByClassName('exterior');
     for (var i = 0; i < elements.length; i++) {
         var element = elements[i];
@@ -265,6 +276,7 @@ function filterButtonsEventHandler(event){
     for (var i = 0; i < blocks.length; i++) {
         var block = blocks[i];
         if (element.id == block.id) {
+            if (element.className.includes('on')) return;
             element.classList.add('on');
             if (element.id == 'exterior_btn') {
                 loadExteriorSettingHTML();
