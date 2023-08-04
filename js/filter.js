@@ -6,6 +6,8 @@ FiltersValues = {
     float_range: null,
     quality: null,
     items: null,
+    float_min: null,
+    float_max: null,
 }
 
 function loadItemBlockHTML(item) {
@@ -18,25 +20,14 @@ function loadItemBlockHTML(item) {
     return $item
 }
 
-function loadBubbleSettingFieldHTML(element, dict_setting) {
-    $('.container').empty();
-    var h3 = $('<h3 class="setting-title">' + element.textContent + '</h3>');
-    $('.container').append(h3);
-    for (var key in dict_setting) {
-        var value = dict_setting[key];
-        var div = $('<div class="setting-bubble" id="' + key + '">' + value + '</div>');
-        $('.container').append(div);
-    }
-}
-
 function loadExteriorSettingHTML() {
     var exterior = FiltersValues.exterior
     var dict_setting = [{id: 'exterior_all', name: 'All', float_range: '0-1'},
-    {id: 'exterior_FN', name: 'Factory New', float_range: '0-0.07'},
+    {id: 'exterior_FN', name: 'Factory New', float_range: '0.00-0.07'},
     {id: 'exterior_MW', name: 'Minimal Wear', float_range: '0.07-0.15'},
     {id: 'exterior_FT', name: 'Field Tested', float_range: '0.15-0.38'},
     {id: 'exterior_WW', name: 'Well Worn', float_range: '0.38-0.45'},
-    {id: 'exterior_BS', name: 'Battle Scarred', float_range: '0.45-1'}];
+    {id: 'exterior_BS', name: 'Battle Scarred', float_range: '0.45-1.00'}];
     $('.container').empty();
     var h3 = $('<h3 class="setting-title">Exterior/Износ</h3>');
     $('.container').append(h3);
@@ -72,6 +63,116 @@ function loadQualitySettingHTML(element) {
             var div = $('<div class="setting-bubble quality" id="' + key + '">' + value + '</div>');
         }
         $('.container').append(div);
+    }
+}
+
+function loadFloatSettingHTML () {
+    var exterior = FiltersValues.exterior
+    var float_range = FiltersValues.float_range
+    $('.container').empty();
+    $('.container').append('<h3 class="setting-title">Float</h3>')
+    if (Boolean(exterior)) {
+        // float-range
+        var float_range_block = $('<div class="float-range"></div>')
+        if (FiltersValues.float_min) {
+            var float_min = FiltersValues.float_min
+        }
+        else {
+            var float_min = ''
+        }
+        if (FiltersValues.float_max) {
+            var float_max = FiltersValues.float_max
+        }
+        else {
+            var float_max = ''
+        }
+        float_range_block.append($('<input>', {class: "filter_input float_min", placeholder: float_range[0], value: float_min}))
+        float_range_block.append($('<span>-</span>'))
+        float_range_block.append($('<input>', {class: "filter_input float_max", placeholder: float_range[1], value: float_max}))
+        // buttons-block
+        var buttons_block = $('<div class="buttons-block"></div>')
+        buttons_block.append($('<div id="reset_float" class="action-button">Сбросить</div>'))
+        buttons_block.append($('<div id="accept_float" class="action-button">Принять</div>'))
+        $('.container').append(float_range_block)
+        $('.container').append(buttons_block)
+        // event listners
+        $('.filter_input.float_min').on('focus', function () {
+            var placeholder = $(this).attr('placeholder')
+            var value = $(this).val()
+            if (!value) {
+                $(this).val(placeholder.split('.')[0] + '.')
+            }
+        }).on('blur', function () {
+            var placeholder = $(this).attr('placeholder')
+            var value = $(this).val()
+            if (!value) {
+                $(this).val('')
+                return
+            }
+            if (value == '0.') {
+                $(this).val('')
+                return
+            }
+            var p = $('.filter_input.float_max').attr('placeholder')
+            var v = $('.filter_input.float_max').val()
+            if (value < placeholder || value > p) {
+                $(this).val('')
+                alert('Недопустимое значение! float_min: ' + value + ' за пределами диапазона ' + placeholder + ' - ' + p)
+                return
+            }
+            if (Boolean(v)) {
+                if (value > v) {
+                    $(this).val('');
+                    alert('Недопустимое значение! float_min больше float_max: ' + value + '>' + v + '.')
+                    return
+                }
+
+            }
+        }).on('keyup', function () {
+            $(this).val($(this).val().replace(new RegExp("^\\D*(\\d*(?:\\.\\d{0,})?).*$","g"), "$1"));
+        })
+
+        $('.filter_input.float_max').on('focus', function () {
+            var placeholder = $(this).attr('placeholder')
+            var value = $(this).val()
+            if (!value) {
+                $(this).val(placeholder.split('.')[0] + '.')
+            }
+        }).on('blur', function () {
+            var placeholder = $(this).attr('placeholder')
+            var value = $(this).val()
+            if (!value) {
+                $(this).val('')
+                return
+            }
+            if (value == '0.') {
+                $(this).val('')
+                return
+            }
+            var p = $('.filter_input.float_min').attr('placeholder')
+            var v = $('.filter_input.float_min').val()
+            if (value > placeholder || value < p) {
+                $(this).val('')
+                alert('Недопустимое значение! float_min: ' + value + ' за пределами диапазона ' + placeholder + ' - ' + p)
+                return
+            }
+            if (Boolean(v)) {
+                if (value < v) {
+                    $(this).val('');
+                    alert('Недопустимое значение! float_max меньше float_min: ' + value + '<' + v + '.')
+                    return
+                }
+
+            }
+        }).on('keyup', function () {
+            $(this).val($(this).val().replace(new RegExp("^\\D*(\\d*(?:\\.\\d{0,})?).*$","g"), "$1"));
+        })
+    }
+    else {
+        var notification_block = $('<div class="notification-text"></div>')
+        notification_block.append($('<p style="color: #7a7171;font-size: 25px;margin: 0px 0px 0px 0px;">Exterior/износ не задан.</p>'))
+        notification_block.append($('<p style="color: #7a7171;margin: 15px 0px 0px 0px;">Задай Exterior прежде чем настраивать Float.</p>'))
+        $('.container').append(notification_block)
     }
 }
 
@@ -113,7 +214,7 @@ function loadCollectionSettingHTML() {
         var collection_block = $('<div class="collection-block"></div>');
         collection_block.append($('<div class="collection-img"></div>')
         .append([$('<img>', {src: `./media/images/collection/${collection.hash_name}.png`}),
-                 $('<div id="change_collection">Сбросить</div>')]));
+                 $('<div id="reset_collection" class="action-button" style="width:100%">Сбросить</div>')]));
         collection_block.append($('<div class="collection-info"></div>').append($('<h3 class="collection-label">' + collection.hash_name + '</h3>')));
         var collection_buttons = $('<div class="collection-buttons"></div>')
         // collection-items
@@ -172,7 +273,7 @@ function loadCollectionSettingHTML() {
         $('.container').append(collection_block);
         $('.container').append(collection_items_block)
     }
-    $('#change_collection').on('click', function() {
+    $('#reset_collection').on('click', function() {
         FiltersValues.choose_collection = null;
         FiltersValues.collection_weapons = null;
         loadCollectionSettingHTML()
@@ -240,6 +341,24 @@ function chooseQuality (element) {
     }
 }
 
+function chooseFloat (element) {
+    if (element.id == 'reset_float') {
+        FiltersValues.float_min = null;
+        FiltersValues.float_max = null;
+        $('.filter_input.float_min').val('')
+        $('.filter_input.float_max').val('')
+    }
+    else if (element.id == 'accept_float') {
+        float_min = $('.filter_input.float_min').val();
+        float_max = $('.filter_input.float_max').val();
+        if (!float_min || !float_max) {
+            alert('Укажи float_min и float_max.');
+            return;
+        };
+        FiltersValues.float_min = float_min;
+        FiltersValues.float_max = float_max;
+    }
+}
 
 function settingFieldEventHandler(event){
     var element = event.target
@@ -247,26 +366,14 @@ function settingFieldEventHandler(event){
     if (element.tagName == 'BUTTON' && element.className == 'item-collection-button') {
         chooseCollection(element);
     }
-    else if (element.className.includes('setting-bubble') && element.className.includes('exterior')) {
+    else if (element.className.includes('exterior') && element.className.includes('setting-bubble')) {
         chooseExterior(element);
     }
-    else if (element.className.includes('setting-bubble') && element.className.includes('quality')) {
+    else if (element.className.includes('quality') && element.className.includes('setting-bubble')) {
         chooseQuality(element);
     }
-
-    if (element.className == 'setting-bubble') {
-        blocks = document.getElementsByClassName('setting-bubble')
-        for (var i = 0; i < blocks.length; i++) {
-            var block = blocks[i];
-            if (element.id == block.id) {
-                element.classList.add('on');
-            }
-            else {
-                if (block.className.includes('on')) {
-                    block.classList.remove('on');
-               }
-            }
-        }
+    else if (element.id == 'reset_float' || element.id == 'accept_float') {
+        chooseFloat(element)
     }
 }
 
@@ -287,7 +394,9 @@ function filterButtonsEventHandler(event){
             else if (element.id == 'collection_btn') {
                 loadCollectionSettingHTML()
             }
-
+            else if (element.id == 'float_btn') {
+                loadFloatSettingHTML()
+            }
 
         }
         else {
@@ -298,6 +407,8 @@ function filterButtonsEventHandler(event){
 
     }
 }
+
+
 
 document.getElementsByClassName('filter-column-block')[0].addEventListener('click', filterButtonsEventHandler)
 document.getElementsByClassName('container')[0].addEventListener('click', settingFieldEventHandler)
