@@ -377,7 +377,10 @@ function settingFieldEventHandler(event){
     }
     // contract in LisSkins
     if (FiltersValues.choose_collection && FiltersValues.float_min && FiltersValues.float_max && FiltersValues.quality && FiltersValues.collection_weapons) {
-        Telegram.WebApp.MainButton.setParams({is_visible: true, text: 'CСОЗДАТЬ', color: '#31b545'}).show()
+        Telegram.WebApp.MainButton.setParams({is_visible: true, text: 'CОЗДАТЬ ЗАДАЧУ', color: '#31b545'}).show()
+    }
+    else if (Telegram.WebApp.MainButton.isVisible) {
+        Telegram.WebApp.MainButton.hide()
     }
 }
 
