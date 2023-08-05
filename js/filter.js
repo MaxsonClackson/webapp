@@ -91,8 +91,8 @@ function loadFloatSettingHTML () {
         float_range_block.append($('<input>', {class: "filter_input float_max", placeholder: float_range[1], value: float_max}))
         // buttons-block
         var buttons_block = $('<div class="buttons-block"></div>')
-        buttons_block.append($('<div id="reset_float" class="action-button">Сбросить</div>'))
-        buttons_block.append($('<div id="accept_float" class="action-button">Принять</div>'))
+        buttons_block.append($('<button id="reset_float" class="action-button">Сбросить</button>'))
+        buttons_block.append($('<button id="accept_float" class="action-button">Принять</button>'))
         $('.container').append(float_range_block)
         $('.container').append(buttons_block)
         // event listners
@@ -214,7 +214,7 @@ function loadCollectionSettingHTML() {
         var collection_block = $('<div class="collection-block"></div>');
         collection_block.append($('<div class="collection-img"></div>')
         .append([$('<img>', {src: `./media/images/collection/${collection.hash_name}.png`}),
-                 $('<div id="reset_collection" class="action-button" style="width:100%">Сбросить</div>')]));
+                 $('<button id="reset_collection" class="action-button" style="width:100%">Сбросить</button>')]));
         collection_block.append($('<div class="collection-info"></div>').append($('<h3 class="collection-label">' + collection.hash_name + '</h3>')));
         var collection_buttons = $('<div class="collection-buttons"></div>')
         // collection-items
@@ -374,6 +374,10 @@ function settingFieldEventHandler(event){
     }
     else if (element.id == 'reset_float' || element.id == 'accept_float') {
         chooseFloat(element)
+    }
+    // contract in LisSkins
+    if (FiltersValues.choose_collection && FiltersValues.float_min && FiltersValues.float_max && FiltersValues.quality && FiltersValues.collection_weapons) {
+        Telegram.WebApp.MainButton.setParams({is_visible: true, text: 'CСОЗДАТЬ', color: '#31b545'}).show()
     }
 }
 
