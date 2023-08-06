@@ -281,5 +281,16 @@ img {
 
 .notification-text {
     text-align: center;
-    padding: 135px 0px;
+    padding: 135px 20px;
+}
+
+.title-block {
+    /* padding: 21px 0px 0px; */
+    display: flex;
+    align-items: center;
+}
+
+#edit_task {
+    margin-left: 33%;
+    color: #31b545;
 }
