@@ -1,4 +1,4 @@
-canCreateIs = false
+PreviewIs = false
 FiltersValues = {
     choose_collection: null,
     collection_weapons: null,
@@ -381,11 +381,11 @@ function settingFieldEventHandler(event){
     // contract in LisSkins
     if (FiltersValues.choose_collection && FiltersValues.float_min && FiltersValues.float_max && FiltersValues.quality && FiltersValues.collection_weapons) {
         Telegram.WebApp.MainButton.setParams({is_visible: true, text: 'CОЗДАТЬ ЗАДАЧУ', color: '#31b545'}).show().onClick(mainButtonClicked)
-        canCreateIs = true
+        PreviewIs = true
     }
     else if (Telegram.WebApp.MainButton.isVisible) {
         Telegram.WebApp.MainButton.hide()
-        canCreateIs = false
+        PreviewIs = false
     }
 }
 
@@ -421,7 +421,7 @@ function filterButtonsEventHandler(event){
 }
 
 function mainButtonClicked (e) {
-    if (canCreateIs) return;
+    if (PreviewIs) return;
 }
 
 

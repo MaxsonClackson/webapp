@@ -288,9 +288,18 @@ img {
     /* padding: 21px 0px 0px; */
     display: flex;
     align-items: center;
+    margin-top: 4%;
 }
 
 #edit_task {
     margin-left: 33%;
     color: #31b545;
+}
+
+.parameter-block {
+    margin-top: 4%;
+}
+
+.parameter-block h4 {
+    margin: 0px;
 }
