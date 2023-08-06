@@ -170,7 +170,7 @@ body {
 /*.item-img img*/
 img {
     width: 100%;
-    height: 80%;
+    height: 100%;
     object-fit: contain;
     /* position: absolute; */
 }
@@ -293,14 +293,35 @@ img {
 }
 
 #edit_task {
-    margin-left: 32%;
+    /* margin-left: 32%; */
     color: #31b545;
+    width: 100%;
+    text-align: right;
+    padding-right: 4%;
 }
 
-.parameter-block {
-    margin-top: 4%;
+.parameter-title {
+    font-size: 1.5em;
+    margin: 0;
+    background: #efefef;
 }
 
-.parameter-block h4 {
-    margin: 0px;
+.value-name {
+    margin: 2% 0 2% 4%;
+}
+
+.item-row {
+    display: flex;
+    align-items: center;
+}
+
+.item-img-row {
+    /*width: 88px;
+    height: 66px;*/
+    width: 100px;
+    height: 100px;
+    display: block;
+    box-sizing: border-box;
+    position: relative;
+    padding: 12px 0;
 }
