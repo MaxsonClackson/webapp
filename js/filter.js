@@ -417,6 +417,7 @@ function filterButtonsEventHandler(event){
 
 function mainButtonClicked (e) {
     console.log('Kek')
+    var t = $(this)
 }
 
 
