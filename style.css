@@ -77,6 +77,7 @@ body {
 
 .setting-title {
     margin: 4%;
+    white-space: nowrap;
 }
 
 .setting-bubble.on, #quality_covert.on,
@@ -292,7 +293,7 @@ img {
 }
 
 #edit_task {
-    margin-left: 33%;
+    margin-left: 32%;
     color: #31b545;
 }
 
