@@ -1,3 +1,4 @@
+pageIs = 'filter'
 FiltersValues = {
     choose_collection: null,
     collection_weapons: null,
@@ -308,8 +309,10 @@ function chooseCollection (element) {
 function chooseExterior (element) {
     var exterior = element.textContent;
     FiltersValues.exterior = exterior;
-    var float_range = element.getAttribute('value').split('-')
+    var float_range = element.getAttribute('value').split('-');
     FiltersValues.float_range = [Number(float_range[0]), Number(float_range[1])]
+    FiltersValues.float_min = null
+    FiltersValues.float_max = null
     var elements = document.getElementsByClassName('exterior');
     for (var i = 0; i < elements.length; i++) {
         var element = elements[i];
@@ -416,6 +419,7 @@ function filterButtonsEventHandler(event){
 }
 
 function mainButtonClicked (e) {
+    var but = Telegram.WebApp.MainButton
     console.log('Kek')
     var t = $(this)
 }
