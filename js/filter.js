@@ -457,7 +457,7 @@ function loadPreviewHTML() {
     }
     if (FiltersValues.collection) {
         var title = 'Collection/Коллекция:';
-        var h3_text = FiltersValues.collection;
+        var h3_text = FiltersValues.collection.hash_name;
         task_info_block.append(parameter_block(title, h3_text))
     }
     if (FiltersValues.quality) {
@@ -473,11 +473,6 @@ function loadPreviewHTML() {
     if (FiltersValues.float_min) {
         var title = 'Float Min:';
         var h3_text = FiltersValues.float_min;
-        task_info_block.append(parameter_block(title, h3_text))
-    }
-    if (FiltersValues.float_max) {
-        var title = 'Float Max:';
-        var h3_text = FiltersValues.float_max;
         task_info_block.append(parameter_block(title, h3_text))
     }
     if (FiltersValues.float_max) {
