@@ -496,24 +496,34 @@ function loadPreviewHTML() {
             item_row.append($('<div>', {class: 'item-title', style: 'padding-left: 4%', text: `${item.hash_name} ${FiltersValues.exterior}`}))
             items_list.append(item_row)
         task_info_block.append(items_list)
-        }
-    }
-    $('.view-zone').append(title_block)
-    $('.view-zone').append(task_info_block)
-    Telegram.WebApp.BackButton.show().onClick(loadMainPageHTML)
-    Telegram.WebApp.MainButton.setParams({is_visible: true, text: 'CОЗДАТЬ ЗАДАЧУ', color: '#31b545'})
-}
+        };
+    };
+    $('.view-zone').append(title_block);
+    $('.view-zone').append(task_info_block);
+    Telegram.WebApp.BackButton.show().onClick(loadMainPageHTML);
+    Telegram.WebApp.MainButton.setParams({is_visible: true, text: 'CОЗДАТЬ ЗАДАЧУ', color: '#31b545'});
+};
 
 function loadMainPageHTML () {
-    $('.view-zone').empty()
-    var filter_column_block = $('<div class="filter-column-block"></div>')
-    filter_column_block.append($('<div id="collection_btn"  class="filter-block">Collection</div>'))
-    filter_column_block.append($('<div id="exterior_btn" class="filter-block">Exterior</div>'))
-    filter_column_block.append($('<div id="quality_btn" class="filter-block">Quality</div>'))
-    filter_column_block.append($('<div id="float_btn" class="filter-block">Float</div>'))
-    $('.view-zone').append($('<div class="container"></div>'))
-    $('.view-zone').append(filter_column_block)
-}
+    $('.view-zone').empty();
+    var filter_column_block = $('<div class="filter-column-block"></div>');
+    filter_column_block.append($('<div id="collection_btn"  class="filter-block">Collection</div>'));
+    filter_column_block.append($('<div id="exterior_btn" class="filter-block">Exterior</div>'));
+    filter_column_block.append($('<div id="quality_btn" class="filter-block">Quality</div>'));
+    filter_column_block.append($('<div id="float_btn" class="filter-block">Float</div>'));
+    $('.view-zone').append($('<div class="container"></div>'));
+    $('.view-zone').append(filter_column_block);
+    $('.filter-column-block').on('click', filterButtonsEventHandler);
+    $('.container').on('click', settingFieldEventHandler);
+    if (FiltersValues.collection && FiltersValues.float_min && FiltersValues.float_max && FiltersValues.quality && FiltersValues.items) {
+        if (Telegram.WebApp.MainButton.isVisible) return;
+        Telegram.WebApp.MainButton.setParams({is_visible: true, text: 'ПРЕДПРОСМОТР', color: '#3390ec'}).show().onClick(loadPreviewHTML);
+    };
+    else if (Telegram.WebApp.MainButton.isVisible) {
+        Telegram.WebApp.MainButton.hide();
+    };
+    if (Telegram.WebApp.BackButton.isVisible) Telegram.WebApp.BackButton.hide();
+};
 
 
 document.getElementsByClassName('filter-column-block')[0].addEventListener('click', filterButtonsEventHandler)
