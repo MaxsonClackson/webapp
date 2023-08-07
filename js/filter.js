@@ -518,7 +518,7 @@ function loadMainPageHTML () {
     if (FiltersValues.collection && FiltersValues.float_min && FiltersValues.float_max && FiltersValues.quality && FiltersValues.items) {
         if (Telegram.WebApp.MainButton.isVisible) return;
         Telegram.WebApp.MainButton.setParams({is_visible: true, text: 'ПРЕДПРОСМОТР', color: '#3390ec'}).show().onClick(loadPreviewHTML);
-    };
+    }
     else if (Telegram.WebApp.MainButton.isVisible) {
         Telegram.WebApp.MainButton.hide();
     };
