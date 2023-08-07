@@ -1,8 +1,3 @@
-Buttons = {
-    MainButton: null, // preview_task, create_task
-    BackButton: null,
-}
-PreviewIs = false
 FiltersValues = {
     task_type: 'contract',
     store_buy: 'lis_skins',
@@ -387,7 +382,7 @@ function settingFieldEventHandler(event){
     }
     // contract in LisSkins
     if (FiltersValues.collection && FiltersValues.float_min && FiltersValues.float_max && FiltersValues.quality && FiltersValues.collection_weapons) {
-        Telegram.WebApp.MainButton.setParams({is_visible: true, text: 'ПРЕДПРОСМОТР', color: '#3390ec'}).show().onClick(mainButtonClicked)
+        Telegram.WebApp.MainButton.setParams({is_visible: true, text: 'ПРЕДПРОСМОТР', color: '#3390ec'}).show().onClick(loadMainPageHTML)
         Buttons.MainButton = 'preview_task'
     }
     else if (Telegram.WebApp.MainButton.isVisible) {
@@ -426,14 +421,6 @@ function filterButtonsEventHandler(event){
 
     }
 }
-
-function mainButtonClicked (e) {
-    if (Buttons.MainButton == 'preview_task') {
-        loadPreviewHTML()
-        Buttons.MainButton = 'create_task'
-    };
-}
-
 
 function loadPreviewHTML() {
     function parameter_block (title, h3_text) {
@@ -511,7 +498,7 @@ function loadPreviewHTML() {
     $('.view-zone').append(title_block)
     $('.view-zone').append(task_info_block)
     Telegram.WebApp.BackButton.show().onClick(loadMainPageHTML)
-    Telegram.WebApp.MainButton.setParams({is_visible: true, text: 'CОЗДАТЬ ЗАДАЧУ', color: '#31b545'}).onClick(loadMainPageHTML)
+    Telegram.WebApp.MainButton.setParams({is_visible: true, text: 'CОЗДАТЬ ЗАДАЧУ', color: '#31b545'})
 }
 
 function loadMainPageHTML () {
