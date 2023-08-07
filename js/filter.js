@@ -382,7 +382,7 @@ function settingFieldEventHandler(event){
     }
     // contract in LisSkins
     if (FiltersValues.collection && FiltersValues.float_min && FiltersValues.float_max && FiltersValues.quality && FiltersValues.collection_weapons) {
-        Telegram.WebApp.MainButton.setParams({is_visible: true, text: 'ПРЕДПРОСМОТР', color: '#3390ec'}).show().onClick(loadMainPageHTML)
+        Telegram.WebApp.MainButton.setParams({is_visible: true, text: 'ПРЕДПРОСМОТР', color: '#3390ec'}).show().onClick(loadPreviewHTML)
         Buttons.MainButton = 'preview_task'
     }
     else if (Telegram.WebApp.MainButton.isVisible) {
