@@ -439,14 +439,14 @@ function loadPreviewHTML() {
     function parameter_block (title, h3_text) {
         var block = $('<div class="parameter-block"></div>')
         block.append($('<div>', {class:"parameter-title", text: title}))
-        block.append($('<h3>', {style: "margin: 2% 0 2% 4%", text: `<i>${h3_text}</i>`}))
+        block.append($('<h3 style="margin: 2% 0 2% 4%"></h3>').append($('<i>', {text: h3_text})))
         return block
     }
     $('.view-zone').empty()
     // title_block
     var title_block = $('<div class="title-block"></div>')
     title_block.append($('<h2 class="setting-title" style="margin:0 0 0 4%;">Параметры задачи</h2>'))
-    title_block.append($('<span id="edit_task">Редактировать</span>'))
+    title_block.append($('<span id="edit_task">Редактировать</span>').on('click', loadMainPageHTML))
     // task-info-block
     var task_info_block = $('<div class="task-info-block" style="margin-top:20px"></div>')
     if (FiltersValues.task_type) {
@@ -510,9 +510,20 @@ function loadPreviewHTML() {
     }
     $('.view-zone').append(title_block)
     $('.view-zone').append(task_info_block)
-    Telegram.WebApp.MainButton.setParams({is_visible: true, text: 'CОЗДАТЬ ЗАДАЧУ', color: '#31b545'})
+    Telegram.WebApp.BackButton.show().onClick(loadMainPageHTML)
+    Telegram.WebApp.MainButton.setParams({is_visible: true, text: 'CОЗДАТЬ ЗАДАЧУ', color: '#31b545'}).onClick(loadMainPageHTML)
 }
 
+function loadMainPageHTML () {
+    $('.view-zone').empty()
+    var filter_column_block = $('<div class="filter-column-block"></div>')
+    filter_column_block.append($('<div id="collection_btn"  class="filter-block">Collection</div>'))
+    filter_column_block.append($('<div id="exterior_btn" class="filter-block">Exterior</div>'))
+    filter_column_block.append($('<div id="quality_btn" class="filter-block">Quality</div>'))
+    filter_column_block.append($('<div id="float_btn" class="filter-block">Float</div>'))
+    $('.view-zone').append($('<div class="container"></div>'))
+    $('.view-zone').append(filter_column_block)
+}
 
 
 document.getElementsByClassName('filter-column-block')[0].addEventListener('click', filterButtonsEventHandler)
