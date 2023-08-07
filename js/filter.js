@@ -332,6 +332,12 @@ function chooseExterior (element) {
 function chooseQuality (element) {
     var quality = element.textContent.split('/')[0];
     FiltersValues.quality = quality;
+    var l = []
+    for (var i=0; i < FiltersValues.collection_weapons.length; i++) {
+        var item = FiltersValues.collection_weapons[i]
+        if (item.quality == quality) l.push(item)
+    }
+    FiltersValues.items = l
     var elements = document.getElementsByClassName('quality');
     for (var i = 0; i < elements.length; i++) {
         var element = elements[i];
@@ -381,13 +387,11 @@ function settingFieldEventHandler(event){
         chooseFloat(element)
     }
     // contract in LisSkins
-    if (FiltersValues.collection && FiltersValues.float_min && FiltersValues.float_max && FiltersValues.quality && FiltersValues.collection_weapons) {
+    if (FiltersValues.collection && FiltersValues.float_min && FiltersValues.float_max && FiltersValues.quality && FiltersValues.items) {
         Telegram.WebApp.MainButton.setParams({is_visible: true, text: 'ПРЕДПРОСМОТР', color: '#3390ec'}).show().onClick(loadPreviewHTML)
-        Buttons.MainButton = 'preview_task'
     }
     else if (Telegram.WebApp.MainButton.isVisible) {
         Telegram.WebApp.MainButton.hide()
-        Buttons.MainButton = null
     }
 }
 
@@ -411,7 +415,6 @@ function filterButtonsEventHandler(event){
             else if (element.id == 'float_btn') {
                 loadFloatSettingHTML()
             }
-
         }
         else {
             if (block.className.includes('on')) {
@@ -482,12 +485,12 @@ function loadPreviewHTML() {
         var h3_text = FiltersValues.float_max;
         task_info_block.append(parameter_block(title, h3_text))
     }
-    if (FiltersValues.collection_weapons) {
+    if (FiltersValues.items.length != 0) {
         var block = $('<div class="parameter-block"></div>')
         block.append($('<div>', {class:"parameter-title", text: 'Items/Предметы:'}))
         var items_list = $('<div class="items-list"></div>')
-        for (var i=0; i < FiltersValues.collection_weapons.length; i++) {
-            var item = FiltersValues.collection_weapons[i];
+        for (var i=0; i < FiltersValues.items.length; i++) {
+            var item = FiltersValues.items[i];
             var item_row = $('<div class="item-row"></div>');
             item_row.append($('<div class="item-img-row"></div>').append($('<img>', {src: `./media/images/weapons/${item.weapon}/${item.hash_name}.png`})))
             item_row.append($('<div>', {class: 'item-title', style: 'padding-left: 4%', text: `${item.hash_name} ${FiltersValues.exterior}`}))
