@@ -1,6 +1,12 @@
+Buttons = {
+    MainButton: null, // preview_task, create_task
+    BackButton: null,
+}
 PreviewIs = false
 FiltersValues = {
-    choose_collection: null,
+    task_type: 'contract',
+    store_buy: 'lis_skins',
+    collection: null,
     collection_weapons: null,
     items: null,
     exterior: null,
@@ -179,7 +185,7 @@ function loadFloatSettingHTML () {
 
 function loadCollectionSettingHTML() {
     $('.container').empty();
-    if (FiltersValues.choose_collection == null) {
+    if (FiltersValues.collection == null) {
         var collections_json = window.FiltersSettingsJSON.collections_json
         $('.container').append($('<h3 class="setting-title">Collection</h3>'))
 
@@ -209,7 +215,7 @@ function loadCollectionSettingHTML() {
         $('.container').append(flex_wrap);
     }
     else {
-        var collection = FiltersValues.choose_collection;
+        var collection = FiltersValues.collection;
         var collection_items = FiltersValues.collection_weapons;
         // collection_block
         var collection_block = $('<div class="collection-block"></div>');
@@ -275,11 +281,12 @@ function loadCollectionSettingHTML() {
         $('.container').append(collection_items_block)
     }
     $('#reset_collection').on('click', function() {
-        FiltersValues.choose_collection = null;
+        FiltersValues.collection = null;
         FiltersValues.collection_weapons = null;
         loadCollectionSettingHTML()
     })
 };
+
 
 function chooseCollection (element) {
     element.textContent = '';
@@ -298,7 +305,7 @@ function chooseCollection (element) {
     for (var i=0; i < collections_json.length; i++) {
         var collection = collections_json[i];
         if (collection.id == collection_id) {
-            FiltersValues.choose_collection = collection;
+            FiltersValues.collection = collection;
             break
         };
     };
@@ -379,13 +386,13 @@ function settingFieldEventHandler(event){
         chooseFloat(element)
     }
     // contract in LisSkins
-    if (FiltersValues.choose_collection && FiltersValues.float_min && FiltersValues.float_max && FiltersValues.quality && FiltersValues.collection_weapons) {
-        Telegram.WebApp.MainButton.setParams({is_visible: true, text: 'CОЗДАТЬ ЗАДАЧУ', color: '#31b545'}).show().onClick(mainButtonClicked)
-        PreviewIs = true
+    if (FiltersValues.collection && FiltersValues.float_min && FiltersValues.float_max && FiltersValues.quality && FiltersValues.collection_weapons) {
+        Telegram.WebApp.MainButton.setParams({is_visible: true, text: 'ПРЕДПРОСМОТР', color: '#3390ec'}).show().onClick(mainButtonClicked)
+        Buttons.MainButton = 'preview_task'
     }
     else if (Telegram.WebApp.MainButton.isVisible) {
         Telegram.WebApp.MainButton.hide()
-        PreviewIs = false
+        Buttons.MainButton = null
     }
 }
 
@@ -421,7 +428,89 @@ function filterButtonsEventHandler(event){
 }
 
 function mainButtonClicked (e) {
-    if (PreviewIs) return;
+    if (Buttons.MainButton == 'preview_task') {
+        loadPreviewHTML()
+        Buttons.MainButton = 'create_task'
+    };
+}
+
+
+function loadPreviewHTML() {
+    function parameter_block (title, h3_text) {
+        var block = $('<div class="parameter-block"></div>')
+        block.append($('<div>', {class:"parameter-title", text: title}))
+        block.append($('<h3>', {style: "margin: 2% 0 2% 4%", text: `<i>${h3_text}</i>`}))
+        return block
+    }
+    $('.view-zone').empty()
+    // title_block
+    var title_block = $('<div class="title-block"></div>')
+    title_block.append($('<h2 class="setting-title" style="margin:0 0 0 4%;">Параметры задачи</h2>'))
+    title_block.append($('<span id="edit_task">Редактировать</span>'))
+    // task-info-block
+    var task_info_block = $('<div class="task-info-block" style="margin-top:20px"></div>')
+    if (FiltersValues.task_type) {
+        var title = 'Тип задачи';
+        var h3_text = null;
+        if (FiltersValues.task_type = 'contract') {
+            h3_text = 'Контрактные расходники:';
+        };
+        task_info_block.append(parameter_block(title, h3_text))
+    }
+    if (FiltersValues.store_buy) {
+        var title = 'Магазин для закупа:';
+        var h3_text = null;
+        if (FiltersValues.store_buy = 'lis_skins') {
+            h3_text = 'Lis Skins';
+        };
+        task_info_block.append(parameter_block(title, h3_text))
+    }
+    if (FiltersValues.collection) {
+        var title = 'Collection/Коллекция:';
+        var h3_text = FiltersValues.collection;
+        task_info_block.append(parameter_block(title, h3_text))
+    }
+    if (FiltersValues.quality) {
+        var title = 'Quality/Качество:';
+        var h3_text = FiltersValues.quality;
+        task_info_block.append(parameter_block(title, h3_text))
+    }
+    if (FiltersValues.exterior) {
+        var title = 'Exterior/Износ:';
+        var h3_text = FiltersValues.exterior;
+        task_info_block.append(parameter_block(title, h3_text))
+    }
+    if (FiltersValues.float_min) {
+        var title = 'Float Min:';
+        var h3_text = FiltersValues.float_min;
+        task_info_block.append(parameter_block(title, h3_text))
+    }
+    if (FiltersValues.float_max) {
+        var title = 'Float Max:';
+        var h3_text = FiltersValues.float_max;
+        task_info_block.append(parameter_block(title, h3_text))
+    }
+    if (FiltersValues.float_max) {
+        var title = 'Float Max:';
+        var h3_text = FiltersValues.float_max;
+        task_info_block.append(parameter_block(title, h3_text))
+    }
+    if (FiltersValues.collection_weapons) {
+        var block = $('<div class="parameter-block"></div>')
+        block.append($('<div>', {class:"parameter-title", text: 'Items/Предметы:'}))
+        var items_list = $('<div class="items-list"></div>')
+        for (var i=0; i < FiltersValues.collection_weapons.length; i++) {
+            var item = FiltersValues.collection_weapons[i];
+            var item_row = $('<div class="item-row"></div>');
+            item_row.append($('<div class="item-img-row"></div>').append($('<img>', {src: `./media/images/weapons/${item.weapon}/${item.hash_name}.png`})))
+            item_row.append($('<div>', {class: 'item-title', style: 'padding-left: 4%', text: `${item.hash_name} ${FiltersValues.exterior}`}))
+            items_list.append(item_row)
+        task_info_block.append(items_list)
+        }
+    }
+    $('.view-zone').append(title_block)
+    $('.view-zone').append(task_info_block)
+    Telegram.WebApp.MainButton.setParams({is_visible: true, text: 'CОЗДАТЬ ЗАДАЧУ', color: '#31b545'})
 }
 
 

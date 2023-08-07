@@ -19,76 +19,83 @@
 </head>
 <body>
     <section class="view-zone">
-        <div class="title-block">
-            <h2 class="setting-title" style="margin:0 0 0 4%;">Параметры задачи</h2>
-            <span id="edit_task">Редактировать</span>
+        <div class="container">
         </div>
-        <div class="task-info-block" style="margin-top:20px">
-            <div class="parameter-block">
-                <div class="parameter-title">Тип задачи:</div>
-                <h3 style="margin: 2% 0 2% 4%"><i>Предметы для контракта</i></h3>
-            </div>
-            <div class="parameter-block">
-                <div class="parameter-title">Магазин для закупа:</div>
-                <h3 style="margin: 2% 0 2% 4%"><i>Lis Skins</i></h3>
-            </div>
-            <div class="parameter-block">
-                <div class="parameter-title">Collection/Коллекция:</div>
-                <h3 style="margin: 2% 0 2% 4%"><i>Раскол</i></h3>
-            </div>
-            <div class="parameter-block">
-                <div class="parameter-title">Quality/Качество:</div>
-                <h3 style="margin: 2% 0 2% 4%"><i>Армейское качество</i></h3>
-            </div>
-            <div class="parameter-block">
-                <div class="parameter-title">Exterior/Износ:</div>
-                <h3 style="margin: 2% 0 2% 4%"><i>Field-Tested</i></h3>
-            </div>
-            <div class="parameter-block">
-                <div class="parameter-title">Float Min:</div>
-                <h3 style="margin: 2% 0 2% 4%"><i>0.15</i></h3>
-            </div>
-            <div class="parameter-block">
-                <div class="parameter-title">Float Max:</div>
-                <h3 style="margin: 2% 0 2% 4%"><i>0.19</i></h3>
-            </div>
-            <div class="parameter-block">
-                <div class="parameter-title">Items/Предметы:</div>
-                <div class="items-list">
-                    <div class="item-row">
-                        <div class="item-img-row">
-                            <img src="./media/images/weapons/AK-47/AK-47 | Neon Rider.png">
-                        </div>
-                        <div class="item-title" style="padding-left: 4%">AK-47 | Neon Rider (Factory New)</div>
-                    </div>
-                    <div class="item-row">
-                        <div class="item-img-row">
-                            <img src="./media/images/weapons/AK-47/AK-47 | Neon Rider.png">
-                        </div>
-                        <div class="item-title" style="padding-left: 4%">AK-47 | Neon Rider (Factory New)</div>
-                    </div>
-                    <div class="item-row">
-                        <div class="item-img-row">
-                            <img src="./media/images/weapons/AK-47/AK-47 | Neon Rider.png">
-                        </div>
-                        <div class="item-title" style="padding-left: 4%">AK-47 | Neon Rider (Factory New)</div>
-                    </div>
-                    <div class="item-row">
-                        <div class="item-img-row">
-                            <img src="./media/images/weapons/AK-47/AK-47 | Neon Rider.png">
-                        </div>
-                        <div class="item-title" style="padding-left: 4%">AK-47 | Neon Rider (Factory New)</div>
-                    </div>
-                    <div class="item-row">
-                        <div class="item-img-row">
-                            <img src="./media/images/weapons/AK-47/AK-47 | Neon Rider.png">
-                        </div>
-                        <div class="item-title" style="padding-left: 4%">AK-47 | Neon Rider (Factory New)</div>
-                    </div>
-                </div>
-            </div>
-
+        <div class="filter-column-block">
+            <div id="collection_btn"  class="filter-block">Collection</div>
+            <div id="exterior_btn" class="filter-block">Exterior</div>
+            <div id="quality_btn" class="filter-block">Quality</div>
+            <div id="float_btn" class="filter-block">Float</div>
         </div>
+<!--        <div class="title-block">-->
+<!--            <h2 class="setting-title" style="margin:0 0 0 4%;">Параметры задачи</h2>-->
+<!--            <span id="edit_task">Редактировать</span>-->
+<!--        </div>-->
+<!--        <div class="task-info-block" style="margin-top:20px">-->
+<!--            <div class="parameter-block">-->
+<!--                <div class="parameter-title">Тип задачи:</div>-->
+<!--                <h3 style="margin: 2% 0 2% 4%"><i>Предметы для контракта</i></h3>-->
+<!--            </div>-->
+<!--            <div class="parameter-block">-->
+<!--                <div class="parameter-title">Магазин для закупа:</div>-->
+<!--                <h3 style="margin: 2% 0 2% 4%"><i>Lis Skins</i></h3>-->
+<!--            </div>-->
+<!--            <div class="parameter-block">-->
+<!--                <div class="parameter-title">Collection/Коллекция:</div>-->
+<!--                <h3 style="margin: 2% 0 2% 4%"><i>Раскол</i></h3>-->
+<!--            </div>-->
+<!--            <div class="parameter-block">-->
+<!--                <div class="parameter-title">Quality/Качество:</div>-->
+<!--                <h3 style="margin: 2% 0 2% 4%"><i>Армейское качество</i></h3>-->
+<!--            </div>-->
+<!--            <div class="parameter-block">-->
+<!--                <div class="parameter-title">Exterior/Износ:</div>-->
+<!--                <h3 style="margin: 2% 0 2% 4%"><i>Field-Tested</i></h3>-->
+<!--            </div>-->
+<!--            <div class="parameter-block">-->
+<!--                <div class="parameter-title">Float Min:</div>-->
+<!--                <h3 style="margin: 2% 0 2% 4%"><i>0.15</i></h3>-->
+<!--            </div>-->
+<!--            <div class="parameter-block">-->
+<!--                <div class="parameter-title">Float Max:</div>-->
+<!--                <h3 style="margin: 2% 0 2% 4%"><i>0.19</i></h3>-->
+<!--            </div>-->
+<!--            <div class="parameter-block">-->
+<!--                <div class="parameter-title">Items/Предметы:</div>-->
+<!--                <div class="items-list">-->
+<!--                    <div class="item-row">-->
+<!--                        <div class="item-img-row">-->
+<!--                            <img src="./media/images/weapons/AK-47/AK-47 | Neon Rider.png">-->
+<!--                        </div>-->
+<!--                        <div class="item-title" style="padding-left: 4%">AK-47 | Neon Rider (Factory New)</div>-->
+<!--                    </div>-->
+<!--                    <div class="item-row">-->
+<!--                        <div class="item-img-row">-->
+<!--                            <img src="./media/images/weapons/AK-47/AK-47 | Neon Rider.png">-->
+<!--                        </div>-->
+<!--                        <div class="item-title" style="padding-left: 4%">AK-47 | Neon Rider (Factory New)</div>-->
+<!--                    </div>-->
+<!--                    <div class="item-row">-->
+<!--                        <div class="item-img-row">-->
+<!--                            <img src="./media/images/weapons/AK-47/AK-47 | Neon Rider.png">-->
+<!--                        </div>-->
+<!--                        <div class="item-title" style="padding-left: 4%">AK-47 | Neon Rider (Factory New)</div>-->
+<!--                    </div>-->
+<!--                    <div class="item-row">-->
+<!--                        <div class="item-img-row">-->
+<!--                            <img src="./media/images/weapons/AK-47/AK-47 | Neon Rider.png">-->
+<!--                        </div>-->
+<!--                        <div class="item-title" style="padding-left: 4%">AK-47 | Neon Rider (Factory New)</div>-->
+<!--                    </div>-->
+<!--                    <div class="item-row">-->
+<!--                        <div class="item-img-row">-->
+<!--                            <img src="./media/images/weapons/AK-47/AK-47 | Neon Rider.png">-->
+<!--                        </div>-->
+<!--                        <div class="item-title" style="padding-left: 4%">AK-47 | Neon Rider (Factory New)</div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
     </section>
     <script type="text/javascript" src='./js/filters_values.js'></script>
     <script type="text/javascript" src='./js/filter.js'></script>
