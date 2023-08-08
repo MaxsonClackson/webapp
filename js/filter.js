@@ -1,3 +1,4 @@
+tg = Telegram.WebApp;
 FiltersValues = {
     task_type: 'contract',
     store_buy: 'lis_skins',
@@ -10,12 +11,7 @@ FiltersValues = {
     items: null,
     float_min: null,
     float_max: null,
-}
-tg = Telegram.WebApp
-
-alert(tg.initData)
-
-
+};
 
 function loadItemBlockHTML(item) {
     var type_and_name = item.hash_name.split(' | ')
