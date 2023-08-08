@@ -11,6 +11,11 @@ FiltersValues = {
     float_min: null,
     float_max: null,
 }
+tg = Telegram.WebApp
+
+alert(tg.initData)
+
+
 
 function loadItemBlockHTML(item) {
     var type_and_name = item.hash_name.split(' | ')
