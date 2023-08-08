@@ -496,7 +496,7 @@ function loadPreviewHTML() {
     $('.view-zone').append(title_block);
     $('.view-zone').append(task_info_block);
     Telegram.WebApp.BackButton.show().onClick(loadMainPageHTML);
-    Telegram.WebApp.MainButton.setParams({is_visible: true, text: 'CОЗДАТЬ ЗАДАЧУ', color: '#31b545'});
+    Telegram.WebApp.MainButton.setParams({is_visible: true, text: 'CОЗДАТЬ ЗАДАЧУ', color: '#31b545'}).onClick(sendTask);
 };
 
 function loadMainPageHTML () {
@@ -520,6 +520,18 @@ function loadMainPageHTML () {
     if (Telegram.WebApp.BackButton.isVisible) Telegram.WebApp.BackButton.hide();
 };
 
+function sendTask() {
+    var fv = FiltersValues
+    var data = {
+        collection: fv.collection,
+        items: fv.items,
+        exterior: fv.exterior,
+        quality: fv.quality,
+        float_min: fv.float_min,
+        float_max: fv.float_max,
+    }
+    Telegram.WebApp.sendData(JSON.stringify(data))
+}
 
 document.getElementsByClassName('filter-column-block')[0].addEventListener('click', filterButtonsEventHandler)
 document.getElementsByClassName('container')[0].addEventListener('click', settingFieldEventHandler)
