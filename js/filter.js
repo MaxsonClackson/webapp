@@ -501,7 +501,8 @@ function loadPreviewHTML() {
     $('.view-zone').append(title_block);
     $('.view-zone').append(task_info_block);
     tg.BackButton.show().onClick(loadMainPageHTML);
-//    tg.MainButton.setParams({is_visible: true, text: 'CОЗДАТЬ ЗАДАЧУ', color: '#31b545'}).onClick(sendTask);
+    tg.MainButton.offClick(loadPreviewHTML)
+    tg.MainButton.setParams({is_visible: true, text: 'CОЗДАТЬ ЗАДАЧУ', color: '#31b545'}).onClick(sendTask);
 };
 
 function loadMainPageHTML () {
@@ -515,14 +516,17 @@ function loadMainPageHTML () {
     $('.view-zone').append(filter_column_block);
     $('.filter-column-block').on('click', filterButtonsEventHandler);
     $('.container').on('click', settingFieldEventHandler);
+    tg.MainButton.offClick(sendTask)
     if (FiltersValues.collection && FiltersValues.float_min && FiltersValues.float_max && FiltersValues.quality && FiltersValues.items) {
         if (tg.MainButton.isVisible) return;
-//        tg.MainButton.setParams({is_visible: true, text: 'ПРЕДПРОСМОТР', color: '#3390ec'}).show().onClick(loadPreviewHTML);
+        tg.MainButton.setParams({is_visible: true, text: 'ПРЕДПРОСМОТР', color: '#3390ec'}).show().onClick(loadPreviewHTML);
     }
     else if (tg.MainButton.isVisible) {
         tg.MainButton.hide();
     };
-    if (tg.BackButton.isVisible) tg.BackButton.hide();
+    if (tg.BackButton.isVisible) {
+        tg.BackButton.hide()
+    };
 };
 
 function sendTask() {
