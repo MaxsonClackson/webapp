@@ -393,10 +393,10 @@ function settingFieldEventHandler(event){
     }
     // contract in LisSkins
     if (FiltersValues.collection && FiltersValues.float_min && FiltersValues.float_max && FiltersValues.quality && FiltersValues.items) {
-        Telegram.WebApp.MainButton.setParams({is_visible: true, text: 'ПРЕДПРОСМОТР', color: '#3390ec'}).show().onClick(loadPreviewHTML)
+        tg.MainButton.setParams({is_visible: true, text: 'ПРЕДПРОСМОТР', color: '#3390ec'}).show().onClick(loadPreviewHTML)
     }
-    else if (Telegram.WebApp.MainButton.isVisible) {
-        Telegram.WebApp.MainButton.hide()
+    else if (tg.MainButton.isVisible) {
+        tg.MainButton.hide()
     }
 }
 
@@ -500,8 +500,8 @@ function loadPreviewHTML() {
     };
     $('.view-zone').append(title_block);
     $('.view-zone').append(task_info_block);
-    Telegram.WebApp.BackButton.show().onClick(loadMainPageHTML);
-    Telegram.WebApp.MainButton.setParams({is_visible: true, text: 'CОЗДАТЬ ЗАДАЧУ', color: '#31b545'}).onClick(sendTask);
+    tg.BackButton.show().onClick(loadMainPageHTML);
+//    tg.MainButton.setParams({is_visible: true, text: 'CОЗДАТЬ ЗАДАЧУ', color: '#31b545'}).onClick(sendTask);
 };
 
 function loadMainPageHTML () {
@@ -516,13 +516,13 @@ function loadMainPageHTML () {
     $('.filter-column-block').on('click', filterButtonsEventHandler);
     $('.container').on('click', settingFieldEventHandler);
     if (FiltersValues.collection && FiltersValues.float_min && FiltersValues.float_max && FiltersValues.quality && FiltersValues.items) {
-        if (Telegram.WebApp.MainButton.isVisible) return;
-        Telegram.WebApp.MainButton.setParams({is_visible: true, text: 'ПРЕДПРОСМОТР', color: '#3390ec'}).show().onClick(loadPreviewHTML);
+        if (tg.MainButton.isVisible) return;
+//        tg.MainButton.setParams({is_visible: true, text: 'ПРЕДПРОСМОТР', color: '#3390ec'}).show().onClick(loadPreviewHTML);
     }
-    else if (Telegram.WebApp.MainButton.isVisible) {
-        Telegram.WebApp.MainButton.hide();
+    else if (tg.MainButton.isVisible) {
+        tg.MainButton.hide();
     };
-    if (Telegram.WebApp.BackButton.isVisible) Telegram.WebApp.BackButton.hide();
+    if (tg.BackButton.isVisible) tg.BackButton.hide();
 };
 
 function sendTask() {
@@ -535,7 +535,7 @@ function sendTask() {
         float_min: fv.float_min,
         float_max: fv.float_max,
     }
-    Telegram.WebApp.sendData(JSON.stringify(data))
+    tg.sendData(JSON.stringify(data))
 }
 
 document.getElementsByClassName('filter-column-block')[0].addEventListener('click', filterButtonsEventHandler)
