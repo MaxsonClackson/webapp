@@ -518,7 +518,7 @@ function loadMainPageHTML () {
     $('.container').on('click', settingFieldEventHandler);
     tg.MainButton.offClick(sendTask)
     if (FiltersValues.collection && FiltersValues.float_min && FiltersValues.float_max && FiltersValues.quality && FiltersValues.items) {
-        if (tg.MainButton.isVisible) return;
+//        if (tg.MainButton.isVisible) return;
         tg.MainButton.setParams({is_visible: true, text: 'ПРЕДПРОСМОТР', color: '#3390ec'}).show().onClick(loadPreviewHTML);
     }
     else if (tg.MainButton.isVisible) {
