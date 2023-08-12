@@ -528,6 +528,8 @@ function loadMainPageHTML () {
 function sendTask() {
     var fv = FiltersValues
     var data = {
+        task_type: 'contract',
+        buy_in_store: 'lis_skins',
         collection: fv.collection,
         items: fv.items,
         exterior: fv.exterior,
